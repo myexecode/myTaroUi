@@ -41,7 +41,6 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%,-50%);
-  background: #ffffff;
   opacity: 0;
   transition-property: opacity;
 }
@@ -57,7 +56,6 @@
   width: 100%;
   min-height: 500px;
   transform: translateY(100%);
-  background: #ffffff;
   transition-property: transform;
 }
 .ctmodal_body_layout_show{
@@ -71,7 +69,6 @@
   top: 0;
   width: 60%;
   height: 100%;
-  background: #ffffff;
   transform: translateX(-100%);
   transition-property: transform;
 }
@@ -84,7 +81,6 @@
   top: 0;
   width: 60%;
   height: 100%;
-  background: #ffffff;
   transform: translateX(100%);
   transition-property: transform;
 }

@@ -13,7 +13,11 @@ class App extends Component {
 
   config = {
     pages: [
-      'pages/index/index'
+      'pages/index/index',
+      'pages/tabbar_page/tabbar_page', // 自定义标签栏 展示页
+      'pages/modal_page/modal_page', // 自定义模态框 展示页
+      'pages/down_refresh/down_refresh', // 自定义下拉刷新 展示页
+      'pages/navigation_bar/navigation_bar' // 自定义导航栏 展示页
     ],
     window: {
       backgroundTextStyle: 'light',

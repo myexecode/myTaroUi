@@ -1,8 +1,9 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Button, ScrollView } from '@tarojs/components'
-import CtModal from '../../compponents/ct_modal/ct_modal'
+import { View } from '@tarojs/components'
 
 import './index.scss'
+
+// 750 设计图
 
 export default class Index extends Component {
 
@@ -13,28 +14,55 @@ export default class Index extends Component {
   constructor() {
     super(...arguments);
     this.state = {
-      modalIsOpen: false
+      list: [
+        {
+          name: '模态框',
+          path: '/pages/modal_page/modal_page'
+        },
+        {
+          name: '下拉刷新',
+          path: '/pages/down_refresh/down_refresh'
+        },
+        {
+          name: '导航栏',
+          path: '/pages/navigation_bar/navigation_bar'
+        },
+        {
+          name: '标签栏',
+          path: '/pages/tabbar_page/tabbar_page'
+        }
+      ]
     };
   }
 
-  openHandler = () => {
-    this.setState({
-      modalIsOpen: !this.state.modalIsOpen
-    })
+  componentDidMount() {
+
+  }
+
+  // 跳转到指定页面
+  onNavgationHandler(item){
+    Taro.navigateTo({url: item.path});
   };
 
-  thandler = () => {
-    console.log('thandler')
-  };
+
   render() {
-    let { modalIsOpen } = this.state;
+    let { list } = this.state;
     return (
       <View className='index'>
-        <Button onClick={this.openHandler}>打开</Button>
-
-        <CtModal isOpen={modalIsOpen} type='1' onCloseEv={this.openHandler} >
-          <View className='box'>dsdfsfds</View>
-        </CtModal>
+        {
+          list.length ?
+            list.map((item, index) => {
+              return (
+                <View
+                  className='index_item' key={item.id || index} taroKey={item.id || index}
+                  onClick={this.onNavgationHandler.bind(this,item)}
+                >
+                  {item.name}
+                </View>
+              )
+            })
+            : null
+        }
       </View>
     )
   }

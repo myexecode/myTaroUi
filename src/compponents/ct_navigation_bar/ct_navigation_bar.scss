@@ -1,0 +1,59 @@
+.custom_navigation_bar{
+  font-size: 36px;
+  color: #ffffff;
+  
+  .custom_title_bar{
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    // background-color: #cccccc;
+  }
+
+  .title_bar_left{
+    width: 80px;
+    height: 100%;
+    align-items: center;
+    padding-left: 20px;
+    // background: pink;
+  }
+  .title_bar_left_arrow{
+    font-size: 50px;
+    font-family: cursive;
+    font-weight: bold;
+  }
+  .title_bar_left_txt{
+    // padding: 0 0 0 20px;
+  }
+
+  .title_bar_name_placeholder{
+    flex-grow: 1;
+  }
+
+  .title_bar_name{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 100%;
+    transform: translateX(-50%);
+  }
+  .title_bar_name_txt{
+    width: 300px;
+    text-align: center;
+  }
+}
+
+.flex_box{
+  display: flex;
+  flex-direction: row;
+}
+
+// 文本溢出隐藏
+.single_line_ellipsis{
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
