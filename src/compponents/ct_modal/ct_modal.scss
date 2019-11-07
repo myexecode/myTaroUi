@@ -1,0 +1,93 @@
+.ct_modal_base{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  visibility: visible;
+  z-index: 999;
+  overflow: hidden;
+  // transform: scale(1);
+}
+
+.ct_modal_base_close{
+  // display: none;
+  visibility: hidden;
+  // transform: scale(0);
+  // background-color: rgba(0,0,0,0);
+}
+.ct_modal_mask{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background: rgba(0,0,0,0);
+  transition-property: background-color;
+}
+.ct_modal_mask_show{
+  background: rgba(0,0,0,0.3);
+}
+
+
+// 主题内容 
+// modal
+.ctmodal_body_base{
+  width: 700px;
+  min-height: 500px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  background: #ffffff;
+  opacity: 0;
+  transition-property: opacity;
+}
+.ctmodal_body_base_show{
+  opacity: 1;
+}
+
+// layout
+.ctmodal_body_layout{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  min-height: 500px;
+  transform: translateY(100%);
+  background: #ffffff;
+  transition-property: transform;
+}
+.ctmodal_body_layout_show{
+  transform: translateY(0);
+}
+
+// drawerL
+.ctmodal_body_drawerL{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  background: #ffffff;
+  transform: translateX(-100%);
+  transition-property: transform;
+}
+.ctmodal_body_drawerL_show{
+  transform: translateX(0);
+}
+.ctmodal_body_drawerR{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  background: #ffffff;
+  transform: translateX(100%);
+  transition-property: transform;
+}
+.ctmodal_body_drawerR_show{
+  transform: translateX(0);
+}
