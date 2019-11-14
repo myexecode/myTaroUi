@@ -6,8 +6,12 @@ import TaroParseiTmpl from './TaroParseiTmpl'
 import { Block, View, Video, Image, Text, Button } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 export default class TaroParsehTmpl extends Taro.Component {
+  static defaultProps = {
+    data: {nodes:[]}
+  }
   render() {
-    const { data: item } = this.props
+    let { data: item={} } = this.props;
+    item = {nodes:[],...item};
     return (
       <Block>
         {/* 判断是否是标签节点 */}
@@ -16,13 +20,13 @@ export default class TaroParsehTmpl extends Taro.Component {
             {item.tag == 'button' ? (
               <Block>
                 <Button type="default" size="mini">
-                  {item.nodes.map((item, index) => {
+                  {item.nodes && item.nodes.length ?item.nodes.map((ite, index) => {
                     return (
-                      <Block key>
-                        <TaroParseiTmpl data={item}></TaroParseiTmpl>
+                      <Block key={ite.id || index} taroKey={ite.id || index}>
+                        <TaroParseiTmpl data={ite}></TaroParseiTmpl>
                       </Block>
                     )
-                  })}
+                  }):null}
                 </Button>
               </Block>
             ) : item.tag == 'li' ? (
@@ -38,13 +42,13 @@ export default class TaroParsehTmpl extends Taro.Component {
                       ></View>
                     </View>
                     <View className={item.classStr + ' wxParse-li-text'}>
-                      {item.nodes.map((item, index) => {
+                      {item.nodes && item.nodes.length ?item.nodes.map((ite, index) => {
                         return (
-                          <Block key>
-                            <TaroParseiTmpl data={item}></TaroParseiTmpl>
+                          <Block key={ite.id || index} taroKey={ite.id || index}>
+                            <TaroParseiTmpl data={ite}></TaroParseiTmpl>
                           </Block>
                         )
-                      })}
+                      }):null}
                     </View>
                   </View>
                 </View>
@@ -67,13 +71,13 @@ export default class TaroParsehTmpl extends Taro.Component {
                   data-src={item.attr.href}
                   style={item.styleStr}
                 >
-                  {item.nodes.map((item, index) => {
+                  {item.nodes && item.nodes.length ?item.nodes.map((ite, index) => {
                     return (
-                      <Block key>
-                        <TaroParseiTmpl data={item}></TaroParseiTmpl>
+                      <Block key={ite.id || index} taroKey={ite.id || index}>
+                        <TaroParseiTmpl data={ite}></TaroParseiTmpl>
                       </Block>
                     )
-                  })}
+                  }):null}
                 </View>
               </Block>
             ) : item.tag == 'br' ? (
@@ -86,13 +90,13 @@ export default class TaroParsehTmpl extends Taro.Component {
                   className={item.classStr + ' wxParse-' + item.tag}
                   style={item.styleStr}
                 >
-                  {item.nodes.map((item, index) => {
+                  {item.nodes && item.nodes.length ?item.nodes.map((ite, index) => {
                     return (
-                      <Block key>
-                        <TaroParseiTmpl data={item}></TaroParseiTmpl>
+                      <Block key={ite.id || index} taroKey={ite.id || index}>
+                        <TaroParseiTmpl data={ite}></TaroParseiTmpl>
                       </Block>
                     )
-                  })}
+                  }):null}
                 </View>
               </Block>
             ) : (
@@ -106,13 +110,13 @@ export default class TaroParsehTmpl extends Taro.Component {
                 }
                 style={item.styleStr}
               >
-                {item.nodes.map((item, index) => {
+                {item.nodes && item.nodes.length ?item.nodes.map((ite, index) => {
                   return (
-                    <Block key>
-                      <TaroParseiTmpl data={item}></TaroParseiTmpl>
+                    <Block key={ite.id || index} taroKey={ite.id || index}>
+                      <TaroParseiTmpl data={ite}></TaroParseiTmpl>
                     </Block>
                   )
-                })}
+                }):null}
               </View>
             )}
             {/* li类型 */}

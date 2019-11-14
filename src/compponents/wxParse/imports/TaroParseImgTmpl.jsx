@@ -1,8 +1,11 @@
 import { Block, View, Video, Image, Text, Button } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 export default class TaroParseImgTmpl extends Taro.Component {
+  static defaultProps = {
+    data: {}
+  }
   render() {
-    const { data: item } = this.props
+    const { data: item={} } = this.props
     return (
       <Block>
         <Image
@@ -12,8 +15,8 @@ export default class TaroParseImgTmpl extends Taro.Component {
           data-idx={item.imgIndex}
           src={item.attr.src}
           mode="aspectFit"
-          onLoad={this.wxParseImgLoad}
-          onClick={this.wxParseImgTap}
+          // onLoad={this.wxParseImgLoad}
+          // onClick={this.wxParseImgTap}
           mode="widthFix"
           style={'width:' + item.width + 'px;'}
         ></Image>

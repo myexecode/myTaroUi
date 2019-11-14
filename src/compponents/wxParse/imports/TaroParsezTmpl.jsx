@@ -6,27 +6,31 @@ import TaroParsebTmpl from './TaroParsebTmpl'
 import { Block, View, Video, Image, Text, Button } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 export default class TaroParsezTmpl extends Taro.Component {
+  static defaultProps = {
+    data: {nodes:[]}
+  }
   render() {
-    const { data: item } = this.props
+    let { data: item={} } = this.props;
+    item = {nodes:[],...item};
     return (
-      <Block>
+      <View>
         {/* 判断是否是标签节点 */}
         {item.node == 'element' ? (
-          <Block>
+          <View>
             {item.tag == 'button' ? (
-              <Block>
+              <View>
                 <Button type="default" size="mini">
-                  {item.nodes.map((item, index) => {
+                  {item.nodes && item.nodes.length ?item.nodes.map((ite, index) => {
                     return (
-                      <Block key>
-                        <TaroParsebTmpl data={item}></TaroParsebTmpl>
-                      </Block>
+                      <View key={ite.id || index} taroKey={ite.id || index}>
+                        <TaroParsebTmpl data={ite}></TaroParsebTmpl>
+                      </View>
                     )
-                  })}
+                  }):null}
                 </Button>
-              </Block>
+              </View>
             ) : item.tag == 'li' ? (
-              <Block>
+              <View>
                 <View
                   className={item.classStr + ' wxParse-li'}
                   style={item.styleStr}
@@ -38,27 +42,27 @@ export default class TaroParsezTmpl extends Taro.Component {
                       ></View>
                     </View>
                     <View className={item.classStr + ' wxParse-li-text'}>
-                      {item.nodes.map((item, index) => {
+                      {item.nodes && item.nodes.length ?item.nodes.map((ite, index) => {
                         return (
-                          <Block key>
-                            <TaroParsebTmpl data={item}></TaroParsebTmpl>
-                          </Block>
+                          <View key={ite.id || index} taroKey={ite.id || index}>
+                            <TaroParsebTmpl data={ite}></TaroParsebTmpl>
+                          </View>
                         )
-                      })}
+                      }):null}
                     </View>
                   </View>
                 </View>
-              </Block>
+              </View>
             ) : item.tag == 'video' ? (
-              <Block>
+              <View>
                 <TaroParseVideoTmpl data={item}></TaroParseVideoTmpl>
-              </Block>
+              </View>
             ) : item.tag == 'img' ? (
-              <Block>
+              <View>
                 <TaroParseImgTmpl data={item}></TaroParseImgTmpl>
-              </Block>
+              </View>
             ) : item.tag == 'a' ? (
-              <Block>
+              <View>
                 <View
                   onClick={this.wxParseTagATap}
                   className={
@@ -67,49 +71,49 @@ export default class TaroParsezTmpl extends Taro.Component {
                   data-src={item.attr.href}
                   style={item.styleStr}
                 >
-                  {item.nodes.map((item, index) => {
+                  {item.nodes && item.nodes.length ?item.nodes.map((ite, index) => {
                     return (
-                      <Block key>
-                        <TaroParsebTmpl data={item}></TaroParsebTmpl>
-                      </Block>
+                      <View key={ite.id || index} taroKey={ite.id || index}>
+                        <TaroParsebTmpl data={ite}></TaroParsebTmpl>
+                      </View>
                     )
-                  })}
+                  }):null}
                 </View>
-              </Block>
+              </View>
             ) : item.tag == 'table' ? (
-              <Block>
+              <View>
                 <View
                   className={item.classStr + ' wxParse-' + item.tag}
                   style={item.styleStr}
                 >
-                  {item.nodes.map((item, index) => {
+                  {item.nodes && item.nodes.length ?item.nodes.map((ite, index) => {
                     return (
-                      <Block key>
-                        <TaroParsebTmpl data={item}></TaroParsebTmpl>
-                      </Block>
+                      <View key={ite.id || index} taroKey={ite.id || index}>
+                        <TaroParsebTmpl data={ite}></TaroParsebTmpl>
+                      </View>
                     )
-                  })}
+                  }):null}
                 </View>
-              </Block>
+              </View>
             ) : item.tag == 'br' ? (
-              <Block>
+              <View>
                 <TaroParseBrTmpl></TaroParseBrTmpl>
-              </Block>
+              </View>
             ) : item.tagType == 'block' ? (
-              <Block>
+              <View>
                 <View
                   className={item.classStr + ' wxParse-' + item.tag}
                   style={item.styleStr}
                 >
-                  {item.nodes.map((item, index) => {
+                  {item.nodes && item.nodes.length ?item.nodes.map((ite, index) => {
                     return (
-                      <Block key>
-                        <TaroParsebTmpl data={item}></TaroParsebTmpl>
-                      </Block>
+                      <View key={ite.id || index} taroKey={ite.id || index}>
+                        <TaroParsebTmpl data={ite}></TaroParsebTmpl>
+                      </View>
                     )
-                  })}
+                  }):null}
                 </View>
-              </Block>
+              </View>
             ) : (
               <View
                 className={
@@ -121,13 +125,13 @@ export default class TaroParsezTmpl extends Taro.Component {
                 }
                 style={item.styleStr}
               >
-                {item.nodes.map((item, index) => {
+                {item.nodes && item.nodes.length ?item.nodes.map((ite, index) => {
                   return (
-                    <Block key>
-                      <TaroParsebTmpl data={item}></TaroParsebTmpl>
-                    </Block>
+                    <View key={ite.id || index} taroKey={ite.id || index}>
+                      <TaroParsebTmpl data={ite}></TaroParsebTmpl>
+                    </View>
                   )
-                })}
+                }):null}
               </View>
             )}
             {/* li类型 */}
@@ -136,16 +140,16 @@ export default class TaroParsezTmpl extends Taro.Component {
             {/* a类型 */}
             {/* 其他块级标签 */}
             {/* 内联标签 */}
-          </Block>
+          </View>
         ) : (
           item.node == 'text' && (
-            <Block>
+            <View>
               <TaroEmojiViewTmpl data={item}></TaroEmojiViewTmpl>
-            </Block>
+            </View>
           )
         )}
         {/* 判断是否是文本节点 */}
-      </Block>
+      </View>
     )
   }
 

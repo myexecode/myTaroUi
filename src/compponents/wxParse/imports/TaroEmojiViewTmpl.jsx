@@ -1,32 +1,41 @@
 import { Block, View, Video, Image, Text, Button } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 export default class TaroEmojiViewTmpl extends Taro.Component {
+
+  static defaultProps = {
+    data: {}
+  }
+
   render() {
-    const { data: item } = this.props
+    let { data: item={} } = this.props
     return (
       <Block>
-        <View className="WxEmojiView wxParse-inline" style={item.styleStr}>
-          {item.textArray.map((item, index) => {
-            return (
-              <Block key>
-                {item.node == 'text' ? (
-                  <Block className={item.text == '\\n' ? 'wxParse-hide' : ''}>
-                    {item.text}
+        {
+          item.textArray ?
+            <View className="WxEmojiView wxParse-inline" style={item.styleStr}>
+              {item.textArray.map((ite, index) => {
+                return (
+                  <Block key={ite.id || index} taroKey={ite.id || index}>
+                    {ite.node == 'text' ? (
+                      <Block className={ite.text == '\\n' ? 'wxParse-hide' : ''}>
+                        {ite.text}
+                      </Block>
+                    ) : (
+                        ite.node == 'element' && (
+                          <Block>
+                            <Image
+                              className="wxEmoji"
+                              src={ite.baseSrc + ite.text}
+                            ></Image>
+                          </Block>
+                        )
+                      )}
                   </Block>
-                ) : (
-                  item.node == 'element' && (
-                    <Block>
-                      <Image
-                        className="wxEmoji"
-                        src={item.baseSrc + item.text}
-                      ></Image>
-                    </Block>
-                  )
-                )}
-              </Block>
-            )
-          })}
-        </View>
+                )
+              })}
+            </View>
+            : null
+        }
       </Block>
     )
   }

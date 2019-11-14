@@ -29,7 +29,7 @@ class XmlParse extends Component {
     let {data} = this.state;
     return (
       <View className='xml_parse'>
-        <CtParse />
+        <CtParse data={data} />
       </View>
     )
   }

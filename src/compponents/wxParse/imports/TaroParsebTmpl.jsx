@@ -6,8 +6,12 @@ import TaroParsecTmpl from './TaroParsecTmpl'
 import { Block, View, Video, Image, Text, Button } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 export default class TaroParsebTmpl extends Taro.Component {
+  static defaultProps = {
+    data: {nodes:[]}
+  }
   render() {
-    const { data: item } = this.props
+    let { data: item={} } = this.props;
+    item = {nodes:[],...item};
     return (
       <Block>
         {/* 判断是否是标签节点 */}
@@ -16,13 +20,16 @@ export default class TaroParsebTmpl extends Taro.Component {
             {item.tag == 'button' ? (
               <Block>
                 <Button type="default" size="mini">
-                  {item.nodes.map((item, index) => {
-                    return (
-                      <Block key>
-                        <TaroParsecTmpl data={item}></TaroParsecTmpl>
-                      </Block>
-                    )
-                  })}
+                  {
+                    item.nodes && item.nodes.length ?
+                      item.nodes.map((ite, index) => {
+                        return (
+                          <Block key={ite.id || index} taroKey={ite.id || index}>
+                            <TaroParsecTmpl data={ite}></TaroParsecTmpl>
+                          </Block>
+                        )
+                      }) : null
+                  }
                 </Button>
               </Block>
             ) : item.tag == 'li' ? (
@@ -38,13 +45,16 @@ export default class TaroParsebTmpl extends Taro.Component {
                       ></View>
                     </View>
                     <View className={item.classStr + ' wxParse-li-text'}>
-                      {item.nodes.map((item, index) => {
-                        return (
-                          <Block key>
-                            <TaroParsecTmpl data={item}></TaroParsecTmpl>
-                          </Block>
-                        )
-                      })}
+                      {
+                        item.nodes && item.nodes.length ?
+                          item.nodes.map((ite, index) => {
+                            return (
+                              <Block key={ite.id || index} taroKey={ite.id || index}>
+                                <TaroParsecTmpl data={ite}></TaroParsecTmpl>
+                              </Block>
+                            )
+                          }) : null
+                      }
                     </View>
                   </View>
                 </View>
@@ -67,13 +77,16 @@ export default class TaroParsebTmpl extends Taro.Component {
                   data-src={item.attr.href}
                   style={item.styleStr}
                 >
-                  {item.nodes.map((item, index) => {
-                    return (
-                      <Block key>
-                        <TaroParsecTmpl data={item}></TaroParsecTmpl>
-                      </Block>
-                    )
-                  })}
+                  {
+                    item.nodes && item.nodes.length ?
+                      item.nodes.map((ite, index) => {
+                        return (
+                          <Block key={ite.id || index} taroKey={ite.id || index}>
+                            <TaroParsecTmpl data={ite}></TaroParsecTmpl>
+                          </Block>
+                        )
+                      }) : null
+                  }
                 </View>
               </Block>
             ) : item.tag == 'br' ? (
@@ -86,35 +99,41 @@ export default class TaroParsebTmpl extends Taro.Component {
                   className={item.classStr + ' wxParse-' + item.tag}
                   style={item.styleStr}
                 >
-                  {item.nodes.map((item, index) => {
-                    return (
-                      <Block key>
-                        <TaroParsecTmpl data={item}></TaroParsecTmpl>
-                      </Block>
-                    )
-                  })}
+                  {
+                    item.nodes && item.nodes.length ?
+                      item.nodes.map((ite, index) => {
+                        return (
+                          <Block key={ite.id || index} taroKey={ite.id || index}>
+                            <TaroParsecTmpl data={ite}></TaroParsecTmpl>
+                          </Block>
+                        )
+                      }) : null
+                  }
                 </View>
               </Block>
             ) : (
-              <View
-                className={
-                  item.classStr +
-                  ' wxParse-' +
-                  item.tag +
-                  ' wxParse-' +
-                  item.tagType
-                }
-                style={item.styleStr}
-              >
-                {item.nodes.map((item, index) => {
-                  return (
-                    <Block key>
-                      <TaroParsecTmpl data={item}></TaroParsecTmpl>
-                    </Block>
-                  )
-                })}
-              </View>
-            )}
+                            <View
+                              className={
+                                item.classStr +
+                                ' wxParse-' +
+                                item.tag +
+                                ' wxParse-' +
+                                item.tagType
+                              }
+                              style={item.styleStr}
+                            >
+                              {
+                                item.nodes && item.nodes.length ?
+                                  item.nodes.map((ite, index) => {
+                                    return (
+                                      <Block key={ite.id || index} taroKey={ite.id || index}>
+                                        <TaroParsecTmpl data={ite}></TaroParsecTmpl>
+                                      </Block>
+                                    )
+                                  }) : null
+                              }
+                            </View>
+                          )}
             {/* li类型 */}
             {/* video类型 */}
             {/* img类型 */}
@@ -123,12 +142,12 @@ export default class TaroParsebTmpl extends Taro.Component {
             {/* 内联标签 */}
           </Block>
         ) : (
-          item.node == 'text' && (
-            <Block>
-              <TaroEmojiViewTmpl data={item}></TaroEmojiViewTmpl>
-            </Block>
-          )
-        )}
+            item.node == 'text' && (
+              <Block>
+                <TaroEmojiViewTmpl data={item}></TaroEmojiViewTmpl>
+              </Block>
+            )
+          )}
         {/* 判断是否是文本节点 */}
       </Block>
     )
