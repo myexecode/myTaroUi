@@ -30,6 +30,14 @@ export default class Index extends Component {
         {
           name: '标签栏',
           path: '/pages/tabbar_page/tabbar_page'
+        },
+        {
+          name: '表单',
+          path: '/pages/form_page/form_page'
+        },
+        {
+          name: '富文本',
+          path: '/pages/xml_parse/xml_parse'
         }
       ]
     };

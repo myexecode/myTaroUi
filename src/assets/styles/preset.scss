@@ -1,0 +1,94 @@
+
+$primaryColor: rgb(230, 45, 45);
+
+// 文本溢出隐藏
+.single_line_ellipsis{
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.multiline_ellipsis{
+  text-overflow: -o-ellipsis-lastline;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -moz-box-orient: vertical;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.multiline2_ellipsis{
+  @extend .multiline_ellipsis;
+  -webkit-line-clamp: 2;
+}
+.multiline3_ellipsis{
+  @extend .multiline_ellipsis;
+  -webkit-line-clamp: 3;
+}
+
+// 隐藏元素
+.element_display_none{
+  display: none!important;
+}
+.element_visibility_hide{
+  visibility: hidden!important;
+}
+.element_opacity0{
+  opacity: 0!important;
+}
+.element_opacity1{
+  opacity: 1!important;
+}
+
+// 居中
+.position_center{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.position_center_ts{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+
+// 数字圆点
+.number_dot_default{
+  min-width: 100px;
+  height: 100px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 100px;
+  box-sizing: border-box;
+  background: $primaryColor;
+  color: #ffffff;
+  border-radius: 50px;
+  padding: 0 20px;
+  font-size: 70px;
+}
+.number_dot30{
+  @extend .number_dot_default;
+  transform: translate(50%,-50%) scale(0.3);
+}
+
+// 清浮动
+.clearfloat:after{
+  content: '';
+  width: 0;
+  height: 0;
+  display: block;
+  clear: both;
+  visibility: hidden;
+}
+.clearfloat{zoom:1;}
