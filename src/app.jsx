@@ -14,6 +14,7 @@ class App extends Component {
   config = {
     pages: [
       'pages/index/index',
+      'pages/graphics_code/graphics_code', // 图形码 展示页
       'pages/xml_parse/xml_parse', // xml html 富文本解析 展示页
       'pages/form_page/form_page', // 自定义表单 展示页
       'pages/tabbar_page/tabbar_page', // 自定义标签栏 展示页

@@ -1,0 +1,22 @@
+.graphics_code{
+  padding: 30px;
+
+  .code_num{
+    line-height: 100px;
+  }
+
+  // 条形码
+  .bar_code_canvas{
+    width: 690px;
+    height: 120px;
+    margin: 0 auto;
+    background: #cccccc;
+  }
+
+  // 二维码
+  .qr_code_canvas{
+    width: 690px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.1);
+  }
+}

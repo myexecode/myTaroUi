@@ -3,12 +3,12 @@ import { View } from '@tarojs/components'
 
 import './index.scss'
 
-// 750 设计图
+// 750 设计图 taro版本 v1.3.12
 
 export default class Index extends Component {
 
   config = {
-    navigationBarTitleText: '首页'
+    navigationBarTitleText: '750 设计图'
   }
 
   constructor() {
@@ -38,6 +38,10 @@ export default class Index extends Component {
         {
           name: '富文本',
           path: '/pages/xml_parse/xml_parse'
+        },
+        {
+          name: '图形码',
+          path: '/pages/graphics_code/graphics_code'
         }
       ]
     };
