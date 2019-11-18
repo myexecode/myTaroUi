@@ -26,7 +26,6 @@ class FormPage extends Component {
   onNumberInputHandler = (e) => {
     console.log(e,'数字输入框');
 
-    return 1;
   };
 
   render() {

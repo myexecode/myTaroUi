@@ -8,7 +8,9 @@ import './index.scss'
 export default class Index extends Component {
 
   config = {
-    navigationBarTitleText: '750 设计图'
+    navigationBarTitleText: '750 设计图',
+    enablePullDownRefresh: true,
+    backgroundColor: '#000000'
   }
 
   constructor() {
@@ -20,8 +22,8 @@ export default class Index extends Component {
           path: '/pages/modal_page/modal_page'
         },
         {
-          name: '下拉刷新',
-          path: '/pages/down_refresh/down_refresh'
+          name: '滚动刷新',
+          path: '/pages/scroll_refresh/scroll_refresh'
         },
         {
           name: '导航栏',
@@ -49,6 +51,12 @@ export default class Index extends Component {
 
   componentDidMount() {
 
+  }
+
+  onPullDownRefresh(){
+    setTimeout(() => {
+      Taro.stopPullDownRefresh()
+    }, 1000);
   }
 
   // 跳转到指定页面
